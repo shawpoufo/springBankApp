@@ -13,7 +13,7 @@ import com.app.digitalbanking.exceptions.BankAccountNotFoundException;
 import com.app.digitalbanking.exceptions.CustomerNotFoundException;
 
 public interface BankAccountService {
-    CustomerDTO saveCustomer(CustomerDTO customerDTO);
+    CustomerDTO saveCustomer(CustomerDTO customerDTO) throws CustomerNotFoundException;
     CurrentBankAccountDTO saveCurrentBankAccount(double initialBalance, double overDraft, Long customerId) throws CustomerNotFoundException;
     SavingBankAccountDTO saveSavingBankAccount(double initialBalance, double interestRate, Long customerId) throws CustomerNotFoundException;
     List<CustomerDTO> listCustomers();
@@ -22,9 +22,12 @@ public interface BankAccountService {
     void credit(String accountId, double amount, String description) throws BankAccountNotFoundException;
     void transfer(String accountIdSource, String accountIdDestination, double amount) throws BankAccountNotFoundException, BalanceNotSufficientException;
     List<BankAccountDTO> bankAccountList();
+    List<BankAccountDTO> bankAccountListByCustomerId(Long customerId);
     CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException;
     CustomerDTO updateCustomer(CustomerDTO customerDTO);
     void deleteCustomer(Long customerId);
     List<AccountOperationDTO> accountHistory(String accountId);
     AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws BankAccountNotFoundException;
+
+    List<CustomerDTO> searchCustomers(String keyword);
 }

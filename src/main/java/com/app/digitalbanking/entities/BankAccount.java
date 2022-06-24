@@ -3,6 +3,7 @@ package com.app.digitalbanking.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,6 +33,6 @@ public abstract class BankAccount {
     private AccountStatus status;
     @ManyToOne
     private Customer customer;
-    @OneToMany(mappedBy = "bankAccount",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "bankAccount",fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
     private List<AccountOperation> accountOperations;
 }
