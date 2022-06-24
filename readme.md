@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Application d'une ''mini'' banque digitale
+Application d'une ''mini'' banque digitale développper avec le framework spring
 
 ## Class diagramme (Entités)
 
